@@ -1,7 +1,7 @@
-<a href="https://githubsfdeploy.herokuapp.com">
+<a href="https://githubsfdeploy.herokuapp.com?owner=findocklabs&repo=fundraising-abandoned-cart?tab=readme-ov-file&ref=master">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
-</a>  
+</a>
 
 # FinDock for Fundraising: Update Abandoned Gift Transaction 
 For organizations using FinDock for Fundraising, when an individual initiates a donation but doesn't follow through with payment, FinDock will have created a Gift Transaction but marked no payment against it, commonly known as an "abandoned cart."  
