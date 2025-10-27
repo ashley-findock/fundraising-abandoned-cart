@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>if Status = &quot;Pending,&quot; this indicates that the donation was abandoned during the online donation process.</description>
+        <name>is_GT_still_pending</name>
+        <label>is GT still pending?</label>
+        <locationX>374</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>Not Pending</defaultConnectorLabel>
+        <rules>
+            <name>Status_Pending</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>updateGiftTransactionClosedLost</targetReference>
+            </connector>
+            <label>Status = Pending</label>
+        </rules>
+    </decisions>
+    <description>If a donation is initiated through FinDock, but not completed, this Flow will update the Status to &quot;Canceled&quot; after 25 hours (after the official cancelation notification will have come in).</description>
+    <environments>Default</environments>
+    <interviewLabel>FinDock: Gift Transaction - Abandoned Cart Status Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FinDock: Gift Transaction - Abandoned Cart Status Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>updated Status to &quot;Canceled&quot; and adds note to Description to reflect that the donation was not completed.</description>
+        <name>updateGiftTransactionClosedLost</name>
+        <label>updateGiftTransactionClosedLost</label>
+        <locationX>242</locationX>
+        <locationY>384</locationY>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <stringValue>Abandoned Cart</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Canceled</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CreatedById</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>005a5000002NDg9AAG</stringValue>
+            </value>
+        </filters>
+        <object>GiftTransaction</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>X25_Hours</name>
+            <connector>
+                <targetReference>is_GT_still_pending</targetReference>
+            </connector>
+            <label>25 Hours</label>
+            <offsetNumber>25</offsetNumber>
+            <offsetUnit>Hours</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
