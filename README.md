@@ -25,4 +25,4 @@ When contributing to this repository, please first discuss the change you wish t
 FinDock Labs is a non-supported group in FinDock that releases applications. Despite the name, assistance for any of these applications is not provided by FinDock Support because they are not officially supported features. For a list of these apps, visit the FinDock Labs account on Github.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE]([url](https://github.com/ashley-findock/fundraising-abandoned-cart/blob/master/LICENSE)) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/ashley-findock/fundraising-abandoned-cart/blob/master/LICENSE) file for details
