@@ -1,10 +1,12 @@
 Deploy to Production/Developer Edition Orgs :
+
 <a href="https://githubsfdeploy.herokuapp.com?owner=findocklabs&repo=fundraising-abandoned-cart?tab=readme-ov-file&ref=master">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
----
+
 Deploy to Sandboxes :
+
 <a href="https://githubsfdeploy-sandbox.herokuapp.com?owner=findocklabs&repo=fundraising-abandoned-cart?tab=readme-ov-file&ref=master">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
